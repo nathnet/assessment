@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  lottery_network:
+
+services:
+  postgresql:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ./environments/production.env
+    volumes:
+      - ./database/init.sql:/database/init.sql
+    ports:
+      - '5432:5432'
+    networks:
+      - lottery_network
+  lottery_application:
+    image: amazoncorretto:17.0.10-alpine3.19
+    env_file:
+      - ./environments/production.env
+    volumes:
+      - ./:/app
+    working_dir: /app
+    depends_on:
+      - postgresql
+    ports:
+      - '8888:8888'
+    networks:
+      - lottery_network
+    command: ["./gradlew", "clean", "bootRun"]

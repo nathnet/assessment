@@ -12,10 +12,9 @@ public class AdminController {
   public AdminController() {}
 
   @PostMapping("/lotteries")
-  public String createOneLottery(@RequestBody String entity) {
+  public String createOneLottery() {
       //TODO: process POST request
-      
-      return entity;
+      return "test";
   }
   
 }

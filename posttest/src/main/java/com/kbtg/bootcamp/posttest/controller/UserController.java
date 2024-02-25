@@ -18,8 +18,9 @@ public class UserController {
   }
 
   @GetMapping("")
-  public void getUsers() {
+  public String getUsers() {
     // test
+    return "Users";
   }
 
   @GetMapping("/{userId}/lotteries")
@@ -29,10 +30,10 @@ public class UserController {
   
 
   @PostMapping("/{userId}/lotteries/{ticketId}")
-  public String buyLotteryForUserId(@RequestBody String entity) {
+  public String buyLotteryForUserId() {
       //TODO: process POST request
       
-      return entity;
+      return "test";
   }
   
   @DeleteMapping("/{userId}/lotteries/{ticketId}")

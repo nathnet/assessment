@@ -11,7 +11,8 @@ public class LotteryController {
   }
 
   @GetMapping("")
-  public void getLotteries() {
+  public String getLotteries() {
     // test
+    return "lotteries";
   }
 }

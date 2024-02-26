@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS lottery;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS user_ticket;
+DROP TABLE IF EXISTS user_lottery;
 
 CREATE TABLE lottery (
   lottery_id char(6) PRIMARY KEY,
@@ -15,11 +15,11 @@ CREATE TABLE users (
   password varchar(255)
 );
 
-CREATE TABLE user_ticket(
+CREATE TABLE user_lottery (
   transaction_id serial PRIMARY KEY,
   lottery_id char(6) NOT NULL,
   user_id char(10) NOT NULL,
-  ticket_amount int,
+  lottery_amount int,
   FOREIGN KEY (lottery_id) REFERENCES lottery (lottery_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );

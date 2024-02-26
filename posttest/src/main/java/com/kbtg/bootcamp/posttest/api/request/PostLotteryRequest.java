@@ -18,7 +18,7 @@ public class PostLotteryRequest {
   
   @NotNull
   @NotBlank(message = "Ticket number cannot be empty.")
-  @Size(min = 6, max = 6, message = "Ticker number must be exactly 6 digits.")
+  @Size(min = 6, max = 6, message = "Ticket number must be exactly 6 digits.")
   @Pattern(regexp = "[0-9]{6}", message = "Ticket number should be from 0-9 for 6 digits. Example: 123456")
   @JsonProperty("ticket")
   String lotteryId;

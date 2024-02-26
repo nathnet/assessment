@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.kbtg.bootcamp.posttest.entity.UserLottery;
 
 @Repository
-public interface UserLotteryRepository extends JpaRepository<UserLottery, Long> {
+public interface UserLotteryRepository extends JpaRepository<UserLottery, Integer> {
   
 }

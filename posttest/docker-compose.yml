@@ -10,7 +10,7 @@ services:
     env_file:
       - ./environments/production.env
     volumes:
-      - ./database/init.sql:/database/init.sql
+      - ./database:/docker-entrypoint-initdb.d
     ports:
       - '5432:5432'
     networks:

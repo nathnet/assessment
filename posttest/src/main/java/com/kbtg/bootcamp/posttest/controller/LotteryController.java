@@ -24,6 +24,7 @@ public class LotteryController {
   @GetMapping("")
   public ResponseEntity<GetLotteryResponse> getLotteries() {
     GetLotteryResponse getLotteryResponse = lotteryService.getAllLotteries();
+    
     return new ResponseEntity<>(getLotteryResponse, HttpStatus.OK);
   }
 }

@@ -11,6 +11,7 @@ import com.kbtg.bootcamp.posttest.api.request.PostLotteryRequest;
 import com.kbtg.bootcamp.posttest.api.response.PostLotteryResponse;
 import com.kbtg.bootcamp.posttest.service.LotteryService;
 
+import jakarta.validation.Valid;
 import lombok.NonNull;
 
 
@@ -25,7 +26,7 @@ public class AdminController {
   }
 
   @PostMapping("/lotteries")
-  public ResponseEntity<PostLotteryResponse> createOneLottery(@RequestBody PostLotteryRequest lottery) {
+  public ResponseEntity<PostLotteryResponse> createOneLottery(final @Valid @RequestBody PostLotteryRequest lottery) {
     PostLotteryResponse postLotteryResponse = lotteryService.createOneLottery(lottery);
 
     return new ResponseEntity<>(postLotteryResponse, HttpStatus.CREATED);

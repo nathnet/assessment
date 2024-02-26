@@ -29,14 +29,14 @@ public class UserController {
   }
   
 
-  @PostMapping("/{userId}/lotteries/{ticketId}")
+  @PostMapping("/{userId}/lotteries/{lotteryId}")
   public String buyLotteryForUserId() {
       //TODO: process POST request
       
       return "test";
   }
   
-  @DeleteMapping("/{userId}/lotteries/{ticketId}")
+  @DeleteMapping("/{userId}/lotteries/{lotteryId}")
   public String sellLotteryForUserId(@RequestParam String param) {
       return new String();
   }

@@ -17,7 +17,7 @@ import com.kbtg.bootcamp.posttest.api.response.PostUserLotteryResponse;
 import com.kbtg.bootcamp.posttest.entity.Lottery;
 import com.kbtg.bootcamp.posttest.entity.User;
 import com.kbtg.bootcamp.posttest.entity.UserLottery;
-import com.kbtg.bootcamp.posttest.exception.BadRequestException;
+import com.kbtg.bootcamp.posttest.exception.NotFoundException;
 import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 import com.kbtg.bootcamp.posttest.repository.UserLotteryRepository;
 import com.kbtg.bootcamp.posttest.repository.UserRepository;
@@ -73,7 +73,7 @@ public class LotteryService {
   public GetUserLotteryResponse getAllLotteriesForUserId(String userId) {
     Optional<User> optionalUser = userRepository.findById(userId);
     User user = optionalUser
-        .orElseThrow(() -> new BadRequestException(String.format("Your userID %s is incorrect", userId)));
+        .orElseThrow(() -> new NotFoundException(String.format("Your userID %s is incorrect", userId)));
 
     Optional<List<UserLottery>> optionalUserLotteryList = userLotteryRepository.findAllByUser(user);
     List<UserLottery> userLotteryList = optionalUserLotteryList.orElse(new ArrayList<>());
@@ -105,9 +105,9 @@ public class LotteryService {
     Optional<Lottery> optionalLottery = lotteryRepository.findById(lotteryId);
 
     User user = optionalUser
-        .orElseThrow(() -> new BadRequestException(String.format("Your userID %s is incorrect", userId)));
+        .orElseThrow(() -> new NotFoundException(String.format("Your userID %s is incorrect", userId)));
     Lottery lottery = optionalLottery
-        .orElseThrow(() -> new BadRequestException(String.format("The lottery you want to purchase with id %s does not exist", lotteryId)));
+        .orElseThrow(() -> new NotFoundException(String.format("The lottery you want to purchase with id %s does not exist", lotteryId)));
 
     UserLottery userLottery = UserLottery.builder()
         .user(user)
@@ -123,7 +123,7 @@ public class LotteryService {
   public DeleteUserLotteryResponse sellLotteryForUserId(String userId, String lotteryId) {
     Optional<User> optionalUser = userRepository.findById(userId);
     User user = optionalUser
-        .orElseThrow(() -> new BadRequestException(String.format("Your userID %s is incorrect", userId)));
+        .orElseThrow(() -> new NotFoundException(String.format("Your userID %s is incorrect", userId)));
 
     Optional<List<UserLottery>> optionalUserLotteryList = userLotteryRepository.findAllByUser(user);
     List<UserLottery> userLotteryList = optionalUserLotteryList.orElse(new ArrayList<>());
@@ -133,7 +133,7 @@ public class LotteryService {
         .collect(Collectors.toList());
 
     if (lotteriesToBeSold.size() == 0) {
-      throw new BadRequestException(String.format("Sale canceled. You do not own any lottery with id %s.", lotteryId));
+      throw new NotFoundException(String.format("Sale canceled. You do not own any lottery with id %s.", lotteryId));
     }
 
     userLotteryRepository.deleteAll(lotteriesToBeSold);

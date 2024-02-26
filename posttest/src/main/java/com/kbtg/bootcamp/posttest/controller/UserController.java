@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kbtg.bootcamp.posttest.api.response.DeleteUserLotteryResponse;
 import com.kbtg.bootcamp.posttest.api.response.GetUserLotteryResponse;
 import com.kbtg.bootcamp.posttest.api.response.PostUserLotteryResponse;
 import com.kbtg.bootcamp.posttest.service.LotteryService;
@@ -62,7 +62,19 @@ public class UserController {
   }
   
   @DeleteMapping("/{userId}/lotteries/{lotteryId}")
-  public String sellLotteryForUserId(@RequestParam String param) {
-    return new String();
+  public ResponseEntity<DeleteUserLotteryResponse> sellLotteryForUserId(
+    @PathVariable
+    @NotBlank(message = "userId must not be empty.")
+    @Pattern(regexp = "[0-9]{10}", message = "UserId should be from 0-9 for 10 digits. Example: 1234567890")
+    String userId,
+    
+    @PathVariable
+    @NotBlank(message = "lotteryId must not be empty.")
+    @Pattern(regexp = "[0-9]{6}", message = "Ticket number should be from 0-9 for 6 digits. Example: 123456")
+    String lotteryId
+  ) {
+    DeleteUserLotteryResponse deleteUserLotteryResponse = lotteryService.sellLotteryForUserId(userId, lotteryId);
+
+    return new ResponseEntity<>(deleteUserLotteryResponse, HttpStatus.OK);
   }
 }

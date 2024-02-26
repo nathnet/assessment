@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kbtg.bootcamp.posttest.api.request.PostLotteryRequest;
 import com.kbtg.bootcamp.posttest.api.response.PostLotteryResponse;
-import com.kbtg.bootcamp.posttest.lottery.LotteryService;
+import com.kbtg.bootcamp.posttest.service.LotteryService;
 
 import lombok.NonNull;
 

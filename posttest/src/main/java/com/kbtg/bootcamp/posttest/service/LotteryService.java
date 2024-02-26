@@ -1,4 +1,4 @@
-package com.kbtg.bootcamp.posttest.lottery;
+package com.kbtg.bootcamp.posttest.service;
 
 import com.kbtg.bootcamp.posttest.api.request.PostLotteryRequest;
 import com.kbtg.bootcamp.posttest.api.response.PostLotteryResponse;

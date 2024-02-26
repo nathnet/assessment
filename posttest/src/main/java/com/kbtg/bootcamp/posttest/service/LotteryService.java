@@ -2,6 +2,8 @@ package com.kbtg.bootcamp.posttest.service;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.kbtg.bootcamp.posttest.api.request.PostLotteryRequest;
 import com.kbtg.bootcamp.posttest.api.response.PostLotteryResponse;
 import com.kbtg.bootcamp.posttest.entity.Lottery;
@@ -9,6 +11,7 @@ import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 
 import lombok.NonNull;
 
+@Service
 public class LotteryService {
 
   private final LotteryRepository lotteryRepository;

@@ -1,6 +1,11 @@
 package com.kbtg.bootcamp.posttest.entity;
 
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,6 +26,7 @@ import lombok.Setter;
 public class UserLottery {
   
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   Integer transactionId;
 
   @ManyToOne
@@ -31,5 +37,9 @@ public class UserLottery {
   @JoinColumn(name = "user_id")
   User user;
 
+  @Column(name = "lottery_amount")
   Integer lotteryAmount;
+
+  @Column(name = "price_at_purchase")
+  BigDecimal priceAtPurchase;
 }

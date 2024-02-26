@@ -20,6 +20,7 @@ CREATE TABLE user_lottery (
   lottery_id varchar(6) CHECK (LENGTH(lottery_id) = 6) NOT NULL,
   user_id varchar(10) CHECK (LENGTH(user_id) = 10) NOT NULL,
   lottery_amount int CHECK (lottery_amount > 0),
+  price_at_purchase numeric(15, 2) CHECK (price_at_purchase >= 0),
   FOREIGN KEY (lottery_id) REFERENCES lottery (lottery_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );

@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Setter
@@ -22,7 +21,6 @@ import lombok.Setter;
 public class UserLottery {
   
   @Id
-  @NonNull
   Integer transactionId;
 
   @ManyToOne
